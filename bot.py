@@ -1,6 +1,7 @@
 import os
 import string
 import asyncio
+import requests
 from mdisky import Mdisk
 from pyrogram import Client, filters
 
@@ -21,7 +22,7 @@ async def start(client, message):
     await message.reply_text(text=f"Hello 👋", reply_to_message_id=message.message_id)
 
 
-@app.on_message(filters.command(['mdisk']))
+@app.on_message(filters.regex('http') & filters.private)
 async def mdisk(client, message):
     await client.send_chat_action(message.chat.id, "typing")
 
