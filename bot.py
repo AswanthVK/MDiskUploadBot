@@ -25,7 +25,7 @@ async def start(client, message):
 
 
 @app.on_message(filters.command(['mdisk']))
-async def id(client, message):
+async def mdisk(client, message):
     await client.send_chat_action(message.chat.id, "typing")
 
     mt = message.text
@@ -34,18 +34,27 @@ async def id(client, message):
     link = await mdisk.convert(url)
     await message.reply_text(text=f"{link}")
     print(link)
-    #await message.reply_text(text=f"`{message.chat.id}`", reply_to_message_id=message.message_id)
 
 
 @app.on_message(filters.command(['rename']))
-async def id(client, message):
+async def rename(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
     #link = "https://mdisk.me/convertor/16x9/5JIit7"
     link = await mdisk.change_filename(url, '@NewBotz')
-    await message.reply_text(text=f"{link}")
+    await message.reply_text(text=f"**New Filename:** `{link}`\n\n{url}")
     print(link)
+
+
+@app.on_message(filters.command(['filename']))
+async def filename(client, message):
+    mt = message.text
+    if (" " in message.text):
+        cmd, url = message.text.split(" ", 1)
+    filename = await mdisk.get_filename(url)
+    await message.reply_text(text=f"**Filename:** {url}")
+    print(filename)
 
 
 app.run()
