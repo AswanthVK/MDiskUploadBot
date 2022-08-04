@@ -30,7 +30,7 @@ async def mdisk(client, message):
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
     if('|' in mt):
-        splitit = url.split("|")
+        splitit = mt.split("|")
         file_name = (splitit[1])
     else:
         file_name = mt
