@@ -35,7 +35,7 @@ async def mdisk(client, message):
     else:
         file_name = mt
     mdisk = Mdisk(API_KEY)
-    link = await requests.mdisk.convert(file_name)
+    link = await mdisk.convert(file_name)
     link0 = await mdisk.change_filename(link, file_name)
     await message.reply_text(text=f"{link0}")
     print(link)
