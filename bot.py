@@ -36,4 +36,15 @@ async def id(client, message):
     #await message.reply_text(text=f"`{message.chat.id}`", reply_to_message_id=message.message_id)
 
 
+@app.on_message(filters.command(['rename']))
+async def id(client, message):
+    mt = message.text
+    if (" " in message.text):
+        cmd, url = message.text.split(" ", 1)
+    #link = "https://mdisk.me/convertor/16x9/5JIit7"
+    link = await mdisk.change_filename(url, '@NewBotz')
+    await message.reply_text(text=f"{link}")
+    print(link)
+
+
 app.run()
