@@ -14,6 +14,8 @@ API_HASH = os.environ.get("API_HASH", "")
 API_KEY = os.environ.get("API_KEY", "ox1G5YFFLX0uBxLee7Mn")
 
 
+mdisk = Mdisk(API_KEY)
+
 app = Client("tgid", bot_token=BOT_TOKEN, api_hash=API_HASH, api_id=API_ID)
 
 
@@ -25,7 +27,6 @@ async def start(client, message):
 @app.on_message(filters.command(['mdisk']))
 async def id(client, message):
     await client.send_chat_action(message.chat.id, "typing")
-    mdisk = Mdisk(API_KEY)
 
     mt = message.text
     if (" " in message.text):
