@@ -13,9 +13,6 @@ API_HASH = os.environ.get("API_HASH", "")
 
 API_KEY = os.environ.get("API_KEY", "ox1G5YFFLX0uBxLee7Mn")
 
-
-mdisk = Mdisk(API_KEY)
-
 app = Client("tgid", bot_token=BOT_TOKEN, api_hash=API_HASH, api_id=API_ID)
 
 
@@ -31,6 +28,7 @@ async def mdisk(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
+    mdisk = Mdisk(API_KEY)
     link = await mdisk.convert(url)
     await message.reply_text(text=f"{link}")
     print(link)
@@ -41,10 +39,21 @@ async def rename(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
-    #link = "https://mdisk.me/convertor/16x9/5JIit7"
+    mdisk = Mdisk(API_KEY)
     link = await mdisk.change_filename(url, '@NewBotz')
     await message.reply_text(text=f"**New Filename:** {link}\n\n**URL:** {url}")
     print(link)
+
+
+@app.on_message(filters.command(['filename']))
+async def filename(client, message):
+    mt = message.text
+    if (" " in message.text):
+        cmd, url = message.text.split(" ", 1)
+    mdisk = Mdisk(API_KEY)
+    filename = await mdisk.get_filename(url)
+    await message.reply_text(text=f"**Filename:** {filename}")
+    print(filename)
 
 
 app.run()
