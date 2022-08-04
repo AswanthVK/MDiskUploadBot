@@ -53,7 +53,7 @@ async def filename(client, message):
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
     filename = await mdisk.get_filename(url)
-    await message.reply_text(text=f"**Filename:** {url}")
+    await message.reply_text(text=f"**Filename:** {filename}")
     print(filename)
 
 
