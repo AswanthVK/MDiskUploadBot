@@ -27,22 +27,19 @@ async def mdisk(client, message):
     await client.send_chat_action(message.chat.id, "typing")
 
     mt = message.text
-    if "|" in mt:
-        url_parts = mt.split("|")
-        if len(url_parts) == 2:
-            youtube_dl_url = url_parts[0]
-            custom_file_name = url_parts[1]
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
-    if('|' in mt):
-        splitit = mt.split("|")
-        file_name = (splitit[1])
+    if "|" in url:
+        url_parts = url.split("|")
+        if len(url_parts) == 2:
+            dl_url = url_parts[0]
+            file_name = url_parts[1]
     else:
-        file_name = mt
+        dl_url0 = url
     mdisk = Mdisk(API_KEY)
-    link = await mdisk.convert(youtube_dl_url)
-    link0 = await mdisk.change_filename(youtube_dl_url, custom_file_name)
-    await message.reply_text(text=f"{link0}")
+    link = await mdisk.convert(dl_url0)
+    link0 = await mdisk.change_filename(dl_url0, file_name)
+    await message.reply_text(text=f"{link}")
     print(link)
 
 
