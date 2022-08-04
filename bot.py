@@ -29,13 +29,13 @@ async def mdisk(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
-    if('|' in url):
+    if('|' in mt):
         splitit = url.split("|")
         file_name = (splitit[1])
     else:
-        file_name = url
+        file_name = mt
     mdisk = Mdisk(API_KEY)
-    link = await mdisk.convert(file_name)
+    link = await requests.mdisk.convert(file_name)
     link0 = await mdisk.change_filename(link, file_name)
     await message.reply_text(text=f"{link0}")
     print(link)
