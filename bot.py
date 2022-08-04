@@ -43,18 +43,8 @@ async def rename(client, message):
         cmd, url = message.text.split(" ", 1)
     #link = "https://mdisk.me/convertor/16x9/5JIit7"
     link = await mdisk.change_filename(url, '@NewBotz')
-    await message.reply_text(text=f"**New Filename:** `{link}`\n\n{url}")
+    await message.reply_text(text=f"**New Filename:** {link}\n\n**URL:** {url}")
     print(link)
-
-
-@app.on_message(filters.command(['filename']))
-async def filename(client, message):
-    mt = message.text
-    if (" " in message.text):
-        cmd, url = message.text.split(" ", 1)
-    filename = await mdisk.get_filename(url)
-    await message.reply_text(text=f"**Filename:** {filename}")
-    print(filename)
 
 
 app.run()
