@@ -29,7 +29,7 @@ async def mdisk(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
-    if "|" in url:
+    if ("|" in url):
         url_parts = url.split("|")
         if len(url_parts) == 2:
             dl_url = url_parts[0]
