@@ -22,24 +22,17 @@ async def start(client, message):
     await message.reply_text(text=f"Hello 👋", reply_to_message_id=message.message_id)
 
 
-@app.on_message(filters.regex('http') & filters.private)
+@app.on_message(filters.command(['mdisk']))
 async def mdisk(client, message):
     await client.send_chat_action(message.chat.id, "typing")
 
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
-    if ("|" in url):
-        url_parts = url.split("|")
-        if len(url_parts) == 2:
-            dl_url = url_parts[0]
-            file_name = url_parts[1]
-    else:
-        dl_url = url
     mdisk = Mdisk(API_KEY)
-    link = await mdisk.convert(dl_url)
-    link0 = await mdisk.change_filename(dl_url, file_name)
-    await message.reply_text(text=f"{dl_url}")
+    link = await mdisk.convert(url)
+    #link0 = await mdisk.change_filename(url, file_name)
+    await message.reply_text(text=f"{link}")
     print(link)
 
 
