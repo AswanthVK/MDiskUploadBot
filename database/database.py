@@ -10,7 +10,7 @@ import asyncio
 from sqlalchemy import Column, Integer, Boolean, String, ForeignKey, UniqueConstraint, func
 
 
-DB_URL = ""
+DB_URL = os.environ.get("DATABASE_URL", "")
 
 
 def start() -> scoped_session:
