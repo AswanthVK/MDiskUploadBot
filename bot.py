@@ -30,7 +30,7 @@ async def mdisk(client, message):
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
     #mdisk = Mdisk(API_KEY)
-    apikey = await get_caption(message.from_user.id)
+    apikey = await get_apikey(message.from_user.id)
     api_key = apikey.apikey
     mdisk = Mdisk(api_key)
     link = await mdisk.convert(url)
