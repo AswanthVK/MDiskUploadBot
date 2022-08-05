@@ -36,6 +36,17 @@ class custom_caption(BASE):
 
 custom_caption.__table__.create(checkfirst=True)
 
+class custom_apikey(BASE):
+    __tablename__ = "apikey"
+    id = Column(Integer, primary_key=True)
+    apikey = Column(String)
+    
+    def __init__(self, id, apikey):
+        self.id = id
+        self.caption = apikey
+
+custom_apikey.__table__.create(checkfirst=True)
+
 async def update_caption(id, caption):
     with INSERTION_LOCK:
         cap = SESSION.query(custom_caption).get(id)
