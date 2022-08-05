@@ -92,4 +92,17 @@ async def view_caption(client, message):
         )
 
 
+@app.on_message(filters.command(['del_caption']))
+async def view_caption(client, message):
+    if (message is not None):
+        try:
+            caption = await del_caption(message.from_user.id)
+        except:
+            caption_text = "Not Added" 
+        await message.reply_text(
+            "Caption deleted successfully",
+            quote = True
+        )
+
+
 app.run()
