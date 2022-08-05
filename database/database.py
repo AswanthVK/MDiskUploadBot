@@ -86,7 +86,7 @@ async def del_caption(id):
         SESSION.commit()
 
 async def get_apikey(id):
-    try:
+    with INSERTION_LOCK:
         apikey = SESSION.query(custom_apikey).get(id)
         return apikey
         SESSION.commit()
