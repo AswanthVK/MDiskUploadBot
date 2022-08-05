@@ -1,7 +1,6 @@
 import os
 import string
 import asyncio
-import requests
 from mdisky import Mdisk
 from pyrogram import Client, filters
 
