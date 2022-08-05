@@ -36,30 +36,6 @@ class custom_caption(BASE):
 
 custom_caption.__table__.create(checkfirst=True)
 
-class custom_apikey(BASE):
-    __tablename__ = "apikey"
-    id = Column(Integer, primary_key=True)
-    apikey = Column(String)
-    
-    def __init__(self, id, apikey):
-        self.id = id
-        self.caption = apikey
-
-custom_apikey.__table__.create(checkfirst=True)
-
-async def update_apikey(id, apikey):
-    with INSERTION_LOCK:
-        cap = SESSION.query(custom_apikey).get(id)
-        if not cap:
-            cap = custom_apikey(id, apikey)
-            SESSION.add(cap)
-            SESSION.flush()
-        else:
-            SESSION.delete(cap)
-            cap = custom_apikey(id, apikey)
-            SESSION.add(cap)
-        SESSION.commit()
-
 async def update_caption(id, caption):
     with INSERTION_LOCK:
         cap = SESSION.query(custom_caption).get(id)
@@ -73,22 +49,10 @@ async def update_caption(id, caption):
             SESSION.add(cap)
         SESSION.commit()
 
-async def del_apikey(id):
-    with INSERTION_LOCK:
-        msg = SESSION.query(custom_apikey).get(id)
-        SESSION.delete(msg)
-        SESSION.commit()
-
 async def del_caption(id):
     with INSERTION_LOCK:
         msg = SESSION.query(custom_caption).get(id)
         SESSION.delete(msg)
-        SESSION.commit()
-
-async def get_apikey(id):
-    with INSERTION_LOCK:
-        apikey = SESSION.query(custom_apikey).get(id)
-        return apikey
         SESSION.commit()
 
 async def get_caption(id):
