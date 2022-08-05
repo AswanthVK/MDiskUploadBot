@@ -29,11 +29,7 @@ async def mdisk(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
-    #mdisk = Mdisk(API_KEY)
-    try:
-        apikey = await get_apikey(message.from_user.id)
-        api_key = apikey.apikey
-    mdisk = Mdisk(api_key)
+    mdisk = Mdisk(API_KEY)
     link = await mdisk.convert(url)
     #link0 = await mdisk.change_filename(url, file_name)
     await message.reply_text(text=f"{link}")
@@ -105,31 +101,6 @@ async def view_caption(client, message):
             caption_text = "Not Added" 
         await message.reply_text(
             "Caption deleted successfully",
-            quote = True
-        )
-
-@app.on_message(filters.command(['auth']))
-async def set_caption(client, message):
-    if len(message.command) == 1:
-        await message.reply_text(
-            "🖊️ Authorise \n\nUse this command to set your own caption text \n\n👉 `set_caption My Caption`", 
-            quote = True
-        )
-    else:
-        command, caption = message.text.split(' ', 1)
-        await update_apikey(message.from_user.id, caption)
-        await message.reply_text(f"**--Your Caption--:**\n\n{caption}", quote=True)
-
-
-@app.on_message(filters.command(['unauth']))
-async def view_caption(client, message):
-    if (message is not None):
-        try:
-            caption = await del_apikey(message.from_user.id)
-        except:
-            caption_text = "Not Added" 
-        await message.reply_text(
-            "Deleted successfully",
             quote = True
         )
 
