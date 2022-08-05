@@ -6,15 +6,15 @@ from database.database import *
 from pyrogram import Client, filters
 
 
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
 
-API_ID = int(os.environ.get("API_ID", ""))
+APP_ID = int(os.environ.get("APP_ID", ""))
 
 API_HASH = os.environ.get("API_HASH", "")
 
 API_KEY = os.environ.get("API_KEY", "ox1G5YFFLX0uBxLee7Mn")
 
-app = Client("tgid", bot_token=BOT_TOKEN, api_hash=API_HASH, api_id=API_ID)
+app = Client("tgid", bot_token=TG_BOT_TOKEN, api_hash=API_HASH, api_id=APP_ID)
 
 
 @app.on_message(filters.command(['start']))
