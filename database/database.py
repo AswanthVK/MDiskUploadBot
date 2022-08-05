@@ -89,6 +89,7 @@ async def get_apikey(id):
     try:
         apikey = SESSION.query(custom_apikey).get(id)
         return apikey
+        SESSION.commit()
 
 async def get_caption(id):
     try:
