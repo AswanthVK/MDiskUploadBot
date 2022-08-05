@@ -48,8 +48,8 @@ async def rename(client, message):
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
     mdisk = Mdisk(API_KEY)
-    file_name = message.caption_text
-    link = await mdisk.change_filename(url, file_name)
+    #file_name = message.caption_text
+    link = await mdisk.change_filename(url, caption_text)
     await message.reply_text(text=f"**New Filename:** {link}\n\n**URL:** {url}")
     print(link)
 
