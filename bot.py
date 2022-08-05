@@ -2,6 +2,7 @@ import os
 import string
 import asyncio
 from mdisky import Mdisk
+from database.database import *
 from pyrogram import Client, filters
 
 
@@ -55,6 +56,19 @@ async def filename(client, message):
     filename = await mdisk.get_filename(url)
     await message.reply_text(text=f"**Filename:** {filename}")
     print(filename)
+
+
+@app.on_message(filters.command(['set_caption']))
+async def set_caption(client, message):
+    if len(message.command) == 1:
+        await message.reply_text(
+            "🖊️ 𝐒𝐄𝐓 𝐂𝐀𝐏𝐓𝐈𝐎𝐍 \n\nUse this command to set your own caption text \n\n👉 `set_caption My Caption`", 
+            quote = True
+        )
+    else:
+        command, caption = message.text.split(' ', 1)
+        await update_caption(message.from_user.id, caption)
+        await message.reply_text(f"**--Your Caption--:**\n\n{caption}", quote=True)
 
 
 app.run()
