@@ -38,11 +38,18 @@ async def mdisk(client, message):
 
 @app.on_message(filters.command(['rename']))
 async def rename(client, message):
+    caption_text = await get_caption(message.from_user.id)
+      try:
+         caption_text = caption_text.caption
+      except:
+         caption_text = ""
+         pass
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
     mdisk = Mdisk(API_KEY)
-    link = await mdisk.change_filename(url, '@NewBotz')
+    file_name = message.caption_text
+    link = await mdisk.change_filename(url, file_name)
     await message.reply_text(text=f"**New Filename:** {link}\n\n**URL:** {url}")
     print(link)
 
@@ -81,8 +88,6 @@ async def view_caption(client, message):
             caption_text = "Not Added" 
         await message.reply_text(
             f"**--Your Caption:--**\n\n{caption_text}",
-            #parse_mode="html", 
-            #disable_web_page_preview=True,
             quote = True
         )
 
