@@ -71,4 +71,19 @@ async def set_caption(client, message):
         await message.reply_text(f"**--Your Caption--:**\n\n{caption}", quote=True)
 
 
+@app.on_message(filters.command(['view_caption']))
+async def view_caption(client, message):
+    if (message is not None):
+        try:
+            caption = await get_caption(message.from_user.id)
+            caption_text = caption.caption
+        except:
+            caption_text = "Not Added" 
+        await message.message.edit(
+            text=f"--Your Caption--\n\n{}".format(caption_text),
+            parse_mode="html", 
+            disable_web_page_preview=True
+        )
+
+
 app.run()
