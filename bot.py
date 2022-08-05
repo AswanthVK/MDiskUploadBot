@@ -79,7 +79,7 @@ async def view_caption(client, message):
             caption_text = caption.caption
         except:
             caption_text = "Not Added" 
-        await message.edit(
+        await message.reply_text(
             text=f"**--Your Caption--**\n\n{caption_text}",
             parse_mode="html", 
             disable_web_page_preview=True
