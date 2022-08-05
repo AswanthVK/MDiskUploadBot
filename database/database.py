@@ -85,6 +85,11 @@ async def del_caption(id):
         SESSION.delete(msg)
         SESSION.commit()
 
+async def get_apikey(id):
+    try:
+        apikey = SESSION.query(custom_apikey).get(id)
+        return apikey
+
 async def get_caption(id):
     try:
         caption = SESSION.query(custom_caption).get(id)
