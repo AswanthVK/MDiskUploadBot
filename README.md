@@ -15,7 +15,7 @@
 * `API_HASH`    - From my.telegram.org
 
 ## Bot Commands
-
+```python
 * /start - Check If Bot is Online!
 
 * /mdisk - (Long Press) MDisk Link
