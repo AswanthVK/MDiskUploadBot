@@ -27,10 +27,6 @@
     "API_HASH": {
       "description": "Get this value from https://my.telegram.org",
       "value": ""
-    },
-    "API_KEY": {
-      "description": "Get this value from @VideoToolMoneyTreebot",
-      "value": ""
     }        
     
   },
