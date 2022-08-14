@@ -12,14 +12,14 @@ APP_ID = int(os.environ.get("APP_ID", ""))
 
 API_HASH = os.environ.get("API_HASH", "")
 
-API_KEY = os.environ.get("API_KEY", "ox1G5YFFLX0uBxLee7Mn")
+#API_KEY = os.environ.get("API_KEY", "")
 
 app = Client("tgid", bot_token=TG_BOT_TOKEN, api_hash=API_HASH, api_id=APP_ID)
 
 
 @app.on_message(filters.command(['start']))
 async def start(client, message):
-    await message.reply_text(text=f"Hello 👋", reply_to_message_id=message.message_id)
+    await message.reply_text(text=f"Hello 👋\n\nI'm a telegram bot which convert MDisk link to your Link", reply_to_message_id=message.message_id)
 
 
 @app.on_message(filters.command(['mdisk']))
@@ -29,6 +29,7 @@ async def mdisk(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
+    API_KEY = await get_caption(message.from_user.id)
     mdisk = Mdisk(API_KEY)
     link = await mdisk.convert(url)
     await message.reply_text(text=f"{link}")
@@ -46,6 +47,7 @@ async def rename(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
+    API_KEY = await get_caption(message.from_user.id)
     mdisk = Mdisk(API_KEY)
     link = await mdisk.change_filename(url, caption_text)
     await message.reply_text(text=f"**New Filename:** {link}\n\n**URL:** {url}")
@@ -57,6 +59,7 @@ async def filename(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
+    API_KEY = await get_caption(message.from_user.id)
     mdisk = Mdisk(API_KEY)
     filename = await mdisk.get_filename(url)
     await message.reply_text(text=f"**Filename:** {filename}")
