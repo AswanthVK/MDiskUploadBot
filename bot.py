@@ -29,7 +29,9 @@ async def mdisk(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
-    API_KEY = await get_caption(message.from_user.id)
+    caption = await get_caption(message.from_user.id)
+    caption_text = caption.caption
+    API_KEY = caption_text
     mdisk = Mdisk(API_KEY)
     link = await mdisk.convert(url)
     await message.reply_text(text=f"{link}")
@@ -46,7 +48,9 @@ async def rename(client, message):
         if len(url_parts) == 2:
             url = url_parts[0]
             file_name = url_parts[1]
-    API_KEY = await get_caption(message.from_user.id)
+    caption = await get_caption(message.from_user.id)
+    caption_text = caption.caption
+    API_KEY = caption_text
     mdisk = Mdisk(API_KEY)
     link = await mdisk.change_filename(url, file_name)
     await message.reply_text(text=f"**New Filename:** {file_name}\n\n**URL:** {url}")
@@ -58,7 +62,9 @@ async def filename(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
-    API_KEY = await get_caption(message.from_user.id)
+    caption = await get_caption(message.from_user.id)
+    caption_text = caption.caption
+    API_KEY = caption_text
     mdisk = Mdisk(API_KEY)
     filename = await mdisk.get_filename(url)
     await message.reply_text(text=f"**Filename:** {filename}")
