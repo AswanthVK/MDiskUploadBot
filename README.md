@@ -23,7 +23,8 @@
 /auth - (Long Press) MDisk Api Key
 /unauth - To Unauthorise bot
 /me - check if you are Authorised 
-```python
+
+
 
 ## *Support*
 <a href="https://t.me/AswanthVK">
