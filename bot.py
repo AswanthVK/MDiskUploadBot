@@ -63,42 +63,42 @@ async def filename(client, message):
     print(filename)
 
 
-@app.on_message(filters.command(['set_caption']))
+@app.on_message(filters.command(['auth']))
 async def set_caption(client, message):
     if len(message.command) == 1:
         await message.reply_text(
-            "🖊️ 𝐒𝐄𝐓 𝐂𝐀𝐏𝐓𝐈𝐎𝐍 \n\nUse this command to set your own caption text \n\n👉 `set_caption My Caption`", 
+            "Use this command to set your own Mdisk Api Key \n\nEg:- `/auth your mdisk key`", 
             quote = True
         )
     else:
         command, caption = message.text.split(' ', 1)
         await update_caption(message.from_user.id, caption)
-        await message.reply_text(f"**--Your Caption--:**\n\n{caption}", quote=True)
+        await message.reply_text(f"__Authorised Successfully__", quote=True)
 
 
-@app.on_message(filters.command(['view_caption']))
+@app.on_message(filters.command(['me']))
 async def view_caption(client, message):
     if (message is not None):
         try:
             caption = await get_caption(message.from_user.id)
             caption_text = caption.caption
         except:
-            caption_text = "Not Added" 
+            caption_text = "Not Authorised" 
         await message.reply_text(
-            f"**--Your Caption:--**\n\n{caption_text}",
+            f"API KEY: {caption_text}",
             quote = True
         )
 
 
-@app.on_message(filters.command(['del_caption']))
+@app.on_message(filters.command(['unauth']))
 async def view_caption(client, message):
     if (message is not None):
         try:
             caption = await del_caption(message.from_user.id)
         except:
-            caption_text = "Not Added" 
+            caption_text = "Not Authorised me" 
         await message.reply_text(
-            "Caption deleted successfully",
+            "Unauthorised successfully",
             quote = True
         )
 
