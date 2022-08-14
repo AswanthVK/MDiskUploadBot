@@ -16,16 +16,19 @@
 
 ## Bot Commands
 ```python
-* /start - Check If Bot is Online!
+/start - Check If Bot is Online!
+/mdisk - (Long Press) MDisk Link
+/rename - (Long Press) Your MDisk link|New Filename
+/filename - (Long Press) Your MDisk Link
+/auth - (Long Press) MDisk Api Key
+/unauth - To Unauthorise bot
+/me - check if you are Authorised 
 
-* /mdisk - (Long Press) MDisk Link
+## *Support*
+<a href="https://t.me/AswanthVK">
+   <p> Telegram </p>
+  </a>
 
-* /rename - (Long Press) Your MDisk link|New Filename
+## Credits, and Thanks to:
 
-* /filename - (Long Press) Your MDisk Link
-
-* /auth - (Long Press) MDisk Api Key
-
-* /unauth - To Unauthorise bot
-
-* /me - To check if you are Authorised 
+* Everyone in this journey 
