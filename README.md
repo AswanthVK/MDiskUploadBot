@@ -1,6 +1,6 @@
 # MDiskUploadBot
 
-![GitHub](https://img.shields.io/github/license/AswanthVK/MDiskUploadBot?label=license)
+![GitHub](https://img.shields.io/github/license/AswanthVK/New-MDiskUploadBot?label=license)
 ![GitHub](https://img.shields.io/badge/Version-Beta-green)
 ---
 An Open Source Telegram Bot Which Convert MDisk Link to your Link 
