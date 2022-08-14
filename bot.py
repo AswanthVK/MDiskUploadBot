@@ -38,13 +38,13 @@ async def mdisk(client, message):
 
 @app.on_message(filters.command(['rename']))
 async def rename(client, message):
-    mt = message.text
-    if (" " in message.text):
-        cmd, url = message.text.split(" ", 1)
+    url = message.text
+    if (" " in message.reply_to_message):
+        cmd, file_name = message.text.split(" ", 1)
     API_KEY = await get_caption(message.from_user.id)
     mdisk = Mdisk(API_KEY)
-    link = await mdisk.change_filename(url, "caption_text")
-    await message.reply_text(text=f"**New Filename:** {link}\n\n**URL:** {url}")
+    link = await mdisk.change_filename(url, file_name)
+    await message.reply_text(text=f"**New Filename:** {file_name}\n\n**URL:** {url}")
     print(link)
 
 
