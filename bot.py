@@ -19,6 +19,8 @@ API_HASH = os.environ.get("API_HASH", "")
 app = Client("tgid", bot_token=TG_BOT_TOKEN, api_hash=API_HASH, api_id=APP_ID)
 
 
+base_url = "https://diskuploader.mypowerdisk.com/v1/tp/cp"
+    
 @app.on_message(filters.command(['start']))
 async def start(client, message):
     await message.reply_text(text=f"Hello 👋\n\nI'm a telegram bot which convert MDisk link to your Link", reply_to_message_id=message.message_id)
@@ -40,9 +42,9 @@ async def mdisk(client, message):
     caption = await get_caption(message.from_user.id)
     caption_text = caption.caption
     API_KEY = caption_text
-    #d = MDisk(TG_BOT_TOKEN)
+ 
     param = {'token':API_KEY, 'link':str(link)} 
-    r = requests.post(url, json = param) 
+    r = requests.post(base_url, json = param) 
     response = r.json()
     data = dict(response)
     mdisk = data["sharelink"]
