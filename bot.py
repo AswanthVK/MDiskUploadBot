@@ -39,8 +39,8 @@ async def mdisk(client, message):
         return await message.reply_text(f"**INVALID LINK**", reply_to_message_id=message.message_id)    
     caption = await get_caption(message.from_user.id)
     caption_text = caption.caption
-    API_KEY = caption_text
-    d = MDisk(API_KEY)
+    #API_KEY = caption_text
+    d = MDisk(TG_BOT_TOKEN)
     link = d.upload(url)
     await message.reply_text(text=f"{link}")
     await a.delete()
