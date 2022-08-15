@@ -34,7 +34,7 @@ async def mdisk(client, message):
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
-    if not message.text.startswith("https:"):
+    if not url.startswith("https:"):
         return await message.reply_text(f"**INVALID LINK**", reply_to_message_id=message.message_id)    
     caption = await get_caption(message.from_user.id)
     caption_text = caption.caption
