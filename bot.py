@@ -34,17 +34,23 @@ async def mdisk(client, message):
         )
     mt = message.text
     if (" " in message.text):
-        cmd, url = message.text.split(" ", 1)
-    if not url.startswith("https:"):
+        cmd, link = message.text.split(" ", 1)
+    if not link.startswith("https:"):
         return await message.reply_text(f"**INVALID LINK**", reply_to_message_id=message.message_id)    
     caption = await get_caption(message.from_user.id)
     caption_text = caption.caption
-    #API_KEY = caption_text
-    d = MDisk(TG_BOT_TOKEN)
-    link = d.upload(url)
-    await message.reply_text(text=f"{link}")
+    API_KEY = caption_text
+    #d = MDisk(TG_BOT_TOKEN)
+    param = {'token':API_KEY, 'link':str(link)} 
+    r = requests.post(url, json = param) 
+    response = r.json()
+    data = dict(response)
+    mdisk = data["sharelink"]
+    
+    #link = d.upload(url)
+    await message.reply_text(text=f"{mdisk}")
     await a.delete()
-    print(link)
+    #print(link)
 
 
 @app.on_message(filters.command(['convert']))
