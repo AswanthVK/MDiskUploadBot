@@ -1,6 +1,7 @@
 import os
 import string
 import asyncio
+import requests
 from mdisk import Mdisk as MDisk
 from mdisky import Mdisk
 from database.database import *
@@ -40,7 +41,7 @@ async def mdisk(client, message):
     caption_text = caption.caption
     API_KEY = caption_text
     d = MDisk(API_KEY)
-    link = await d.upload(url)
+    link = d.upload(url)
     await message.reply_text(text=f"{link}")
     await a.delete()
     print(link)
