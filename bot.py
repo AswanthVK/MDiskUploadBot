@@ -1,6 +1,7 @@
 import os
 import string
 import asyncio
+from mdisk import Mdisk as MDisk
 from mdisky import Mdisk
 from database.database import *
 from pyrogram import Client, filters
@@ -25,7 +26,30 @@ async def start(client, message):
 @app.on_message(filters.command(['mdisk']))
 async def mdisk(client, message):
     await client.send_chat_action(message.chat.id, "typing")
+    a = await bot.send_message(
+            chat_id=message.chat.id,
+            text=f"Processing…",
+            reply_to_message_id=message.message_id
+        )
+    mt = message.text
+    if (" " in message.text):
+        cmd, url = message.text.split(" ", 1)
+    if not message.text.startswith("https:"):
+        return await message.reply_text(f"**INVALID LINK**", reply_to_message_id=message.message_id)    
+    caption = await get_caption(message.from_user.id)
+    caption_text = caption.caption
+    API_KEY = caption_text
+    d = MDisk(API_KEY)
+    link = await d.upload(url)
+    await message.reply_text(text=f"{link}")
+    await a.delete()
+    print(link)
 
+
+@app.on_message(filters.command(['convert']))
+async def mdisk(client, message):
+    await client.send_chat_action(message.chat.id, "typing")
+    
     mt = message.text
     if (" " in message.text):
         cmd, url = message.text.split(" ", 1)
