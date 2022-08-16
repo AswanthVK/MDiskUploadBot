@@ -3,7 +3,7 @@ import re
 import string
 import asyncio
 import requests
-#from mdisk import Mdisk as MDisk
+from mdisk import Mdisk as MDisk
 from mdisky import Mdisk
 from database.database import *
 from pyrogram import Client, filters
@@ -41,15 +41,10 @@ async def mdisk(client, message):
     caption = await get_caption(message.from_user.id)
     caption_text = caption.caption
     API_KEY = caption_text
-    #d = MDisk(API_KEY)
-    #link = d.upload(url)
-    url = "https://diskuploader.mypowerdisk.com/v1/tp/cp"
-    param = {'token':API_KEY, 'link':str(link)} 
-    r = requests.post(link, json = param) 
-    response = r.json()
-    data = dict(response)
-    mdisk = data["sharelink"]
-    await message.reply_text(text=f"{mdisk}")
+    d = MDisk(API_KEY)
+    link = d.upload(url)
+    
+    await message.reply_text(text=f"{link}")
     await a.delete()
 
 
