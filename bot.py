@@ -35,14 +35,14 @@ async def mdisk(client, message):
         )
     mt = message.text
     if (" " in message.text):
-        cmd, link = message.text.split(" ", 1)
+        cmd, links = message.text.split(" ", 1)
     if not link.startswith("https:"):
         return await message.reply_text(f"**INVALID LINK**", reply_to_message_id=message.message_id)    
     caption = await get_caption(message.from_user.id)
     caption_text = caption.caption
     API_KEY = caption_text
     d = MDisk(API_KEY)
-    link = d.upload(url)
+    link = d.upload(links)
     
     await message.reply_text(text=f"{link}")
     await a.delete()
