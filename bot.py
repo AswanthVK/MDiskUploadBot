@@ -41,9 +41,13 @@ async def mdisk(client, message):
     caption = await get_caption(message.from_user.id)
     caption_text = caption.caption
     API_KEY = caption_text
-    d = MDisk(API_KEY)
-    link = d.upload(links)
-    
+    #d = MDisk(API_KEY)
+    #link = d.upload(links)
+    base_url = 'https://diskuploader.mypowerdisk.com/v1/tp/cp'
+    param = {'token':caption_text, 'link':links} 
+    r = requests.post(base_url, json = param) 
+    mdisk = r.json()["sharelink"]
+    link = mdisk
     await message.reply_text(text=f"{link}")
     await a.delete()
 
