@@ -44,8 +44,8 @@ async def mdisk(client, message):
     #d = MDisk(API_KEY)
     #link = d.upload(url)
     url = "https://diskuploader.mypowerdisk.com/v1/tp/cp"
-    param = {'token':str(API_KEY), 'link':str(link)} 
-    r = requests.post(url, json = param) 
+    param = {'token':API_KEY, 'link':str(link)} 
+    r = requests.post(link, json = param) 
     response = r.json()
     data = dict(response)
     mdisk = data["sharelink"]
