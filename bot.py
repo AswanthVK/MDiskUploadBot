@@ -1,9 +1,7 @@
 import os
-import re
 import string
 import asyncio
 import requests
-from mdisk import Mdisk as MDisk
 from mdisky import Mdisk
 from database.database import *
 from pyrogram import Client, filters
@@ -23,33 +21,6 @@ app = Client("tgid", bot_token=TG_BOT_TOKEN, api_hash=API_HASH, api_id=APP_ID)
 @app.on_message(filters.command(['start']))
 async def start(client, message):
     await message.reply_text(text=f"Hello 👋\n\nI'm a telegram bot which convert MDisk link to your Link", reply_to_message_id=message.message_id)
-
-
-@app.on_message(filters.command(['mdisk']))
-async def mdisk(client, message):
-    await client.send_chat_action(message.chat.id, "typing")
-    a = await client.send_message(
-            chat_id=message.chat.id,
-            text=f"Processing…",
-            reply_to_message_id=message.message_id
-        )
-    mt = message.text
-    if (" " in message.text):
-        cmd, links = message.text.split(" ", 1)
-    if not links.startswith("https:"):
-        return await message.reply_text(f"**INVALID LINK**", reply_to_message_id=message.message_id)    
-    caption = await get_caption(message.from_user.id)
-    caption_text = caption.caption
-    API_KEY = caption_text
-    #d = MDisk(API_KEY)
-    #link = d.upload(links)
-    base_url = 'https://diskuploader.mypowerdisk.com/v1/tp/cp'
-    param = {'token':caption_text, 'link':links} 
-    r = requests.post(base_url, json = param) 
-    mdisk = r.json()["sharelink"]
-    link = mdisk
-    await message.reply_text(text=f"{link}")
-    await a.delete()
 
 
 @app.on_message(filters.command(['convert']))
