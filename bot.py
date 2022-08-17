@@ -131,9 +131,9 @@ async def view_caption(client, message):
 
 async def MDisk(link):
     realaurl = 'https://diskuploader.mypowerdisk.com/v1/tp/cp'
-    caption = await get_caption(message.from_user.id)
-    caption_text = caption.caption
-    API_KEY = caption_text
+    #caption = await get_caption(message.from_user.id)
+    #caption_text = caption.caption
+    API_KEY = 'ox1G5YFFLX0uBxLee7Mn'
     param = {'token':f'{API_KEY}','link':link}
     res = requests.post(realaurl, json = param)         
     data = res.json()
@@ -142,6 +142,12 @@ async def MDisk(link):
     #bot.delete_messages(con)
     v_url = data['sharelink']
     return (v_url)
+
+
+async def API_KEY(message):
+    caption = await get_caption(message.from_user.id)
+    caption_text = caption.caption
+    return (caption_text)
 
 
 app.run()
