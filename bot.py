@@ -23,23 +23,6 @@ async def start(client, message):
     await message.reply_text(text=f"Hello 👋\n\nI'm a telegram bot which convert MDisk link to your Link", reply_to_message_id=message.message_id)
 
 
-@app.on_message(filters.command(['mdisk']))
-async def mdisk(client, message):
-    await client.send_chat_action(message.chat.id, "typing")
-
-    mt = message.text
-    if (" " in message.text):
-        cmd, links = message.text.split(" ", 1)
-    #if not links.startswith("https:"):
-        #return await message.reply_text(f"**INVALID LINK**", reply_to_message_id=message.message_id)    
-    caption = await get_caption(message.from_user.id)
-    caption_text = caption.caption
-    API_KEY = caption_text
-    mdisk = await MDisk(links)
-    await message.reply_text(text=f"{mdisk}", quote=True)
-    await a.delete()
-
-
 @app.on_message(filters.command(['convert']))
 async def mdisk(client, message):
     await client.send_chat_action(message.chat.id, "typing")
@@ -127,27 +110,6 @@ async def view_caption(client, message):
             "Unauthorised successfully",
             quote = True
         )
-
-
-async def MDisk(link):
-    realaurl = 'https://diskuploader.mypowerdisk.com/v1/tp/cp'
-    #caption = await get_caption(message.from_user.id)
-    #caption_text = caption.caption
-    API_KEY = 'ox1G5YFFLX0uBxLee7Mn'
-    param = {'token':f'{API_KEY}','link':link}
-    res = requests.post(realaurl, json = param)         
-    data = res.json()
-    data = dict(data)
-    print(data)
-    #bot.delete_messages(con)
-    v_url = data['sharelink']
-    return (v_url)
-
-
-async def API_KEY(message):
-    caption = await get_caption(message.from_user.id)
-    caption_text = caption.caption
-    return (caption_text)
 
 
 app.run()
