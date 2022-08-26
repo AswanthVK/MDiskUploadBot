@@ -19,7 +19,7 @@ An Open Source Telegram Bot Which Convert MDisk Link to your Link
 ## Bot Commands
 ```python
 /start - Check If Bot is Online!
-/convert - (Long Press) MDisk Link
+/mdisk - (Long Press) MDisk Link
 /rename - (Long Press) Your MDisk link|New Filename
 /filename - (Long Press) Your MDisk Link
 /auth - (Long Press) MDisk Api Key
