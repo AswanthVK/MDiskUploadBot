@@ -23,7 +23,7 @@ async def start(client, message):
     await message.reply_text(text=f"Hello 👋\n\nI'm a telegram bot which convert MDisk link to your Link", reply_to_message_id=message.message_id)
 
 
-@app.on_message(filters.command(['convert']))
+@app.on_message(filters.command(['mdisk']))
 async def mdisk(client, message):
     await client.send_chat_action(message.chat.id, "typing")
     
