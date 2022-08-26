@@ -15,7 +15,7 @@ API_HASH = os.environ.get("API_HASH", "")
 
 #API_KEY = os.environ.get("API_KEY", "")
 
-app = Client("tgid", bot_token=TG_BOT_TOKEN, api_hash=API_HASH, api_id=APP_ID)
+app = Client("tgid", bot_token=TG_BOT_TOKEN, api_hash=API_HASH, api_id=API_ID)
 
 
 @app.on_message(filters.command(['start']))
