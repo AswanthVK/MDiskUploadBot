@@ -7,9 +7,9 @@
     "mdisk",
     "upload" 
   ],
-  "success_url": "https://github.com/AswanthVK/New-MDiskUploadBot",
-  "website": "https://github.com/AswanthVK/New-MDiskUploadBot",
-  "repository": "https://github.com/AswanthVK/New-MDiskUploadBot",
+  "success_url": "https://github.com/AswanthVK/MDiskUploadBot",
+  "website": "https://github.com/AswanthVK/MDiskUploadBot",
+  "repository": "https://github.com/AswanthVK/MDiskUploadBot",
   "logo": "https://telegra.ph/file/e7dc7aef6713cccc18d8b.jpg",
   "env": {
     "WEBHOOK": {
